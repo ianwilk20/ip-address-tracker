@@ -33,7 +33,3 @@ body {
     min-height: 100vh;
     color: black;
 }
-
-.pattern {
-    background-image: url('./assets/images/pattern-bg-mobile.png');
-}
