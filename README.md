@@ -29,18 +29,18 @@ Users should be able to:
 
 Mobile:
 
-![Mobile step 1](/design/completed/mobile-init.png)
+![Mobile site](/design/completed/mobile-init.png)
 
 
 Desktop:
 
-![Desktop step 1](/design/completed/desktop-init.png)
+![Desktop site](/design/completed/desktop-init.png)
 
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://github.com/ianwilk20/ip-address-tracker)
-- Live Site URL: [Add live site URL here](https://ip-tracker-ianwilk20.netlify.app/)
+- [Solution URL](https://github.com/ianwilk20/ip-address-tracker)
+- [Live Site URL](https://ip-tracker-ianwilk20.netlify.app/)
 
 ## My process
 
@@ -120,4 +120,4 @@ export default {
 - I am using Netlify to host the live site. The API I am using for the IP Address lookup is an "http" site. When the API url is hardcoded in the application and hosted on Netlify, the request will be blocked due to "Mixed Content"; because the Netlify app is secured over "https" and it's trying to make requests to an API that served over "http". It appears that it isn't Netlify that is blocking the request but rather something that the browser blocks for security reasons, since mixed content can make the connection vulnerable to attacks. The solution is to:
 
  a) Create a .env file with an environment variable with the url of the netlify site followed by `/api/`. Also, modify the fetch call to use that environment variable.
- b) In the build dist folder, add a file called `_redirects` (no file extension) with the content of `/api/* http://ip-api.com/:splat 200!`. What that does is forward requests made at `https://ip-tracker-ianwilk20.netlify.app/api/` to the API `http://ip-api.com/json/`. In essence, it acts as a proxy, allowing the frontend to make calls to the http-based API all the while serving the app over HTTPS.
+ b) In the build dist folder, add a file called `_redirects` (no file extension) with the content of `/api/* http://ip-api.com/:splat 200!`. What that does is forward requests made at `https://ip-tracker-ianwilk20.netlify.app/api/` to the API `http://ip-api.com/`. In essence, it acts as a proxy, allowing the frontend to make calls to the http-based API all the while serving the app over HTTPS.
