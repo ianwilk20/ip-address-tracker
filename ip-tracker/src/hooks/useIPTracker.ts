@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import { IPInfo } from '../types/IPInfo'
+import { getAPIUrl } from '../utils'
 
 export const useIpTracker = (ip_address: string) => {
     const [data, setData] = useState<IPInfo | null>(null)
     const [error, setError] = useState<unknown | null>(null)
     const [loading, setLoading] = useState<boolean | null>(null)
+    const api_url = getAPIUrl()
 
     useEffect(() => {
         if (!ip_address) {
@@ -12,11 +14,12 @@ export const useIpTracker = (ip_address: string) => {
             setLoading(null)
             return
         }
+        if (!api_url) return
         const handleAPICall = async () => {
             try {
                 setLoading(true)
                 const result = await fetch(
-                    `http://ip-api.com/json/${ip_address}?fields=status,region,city,zip,lat,lon,offset,isp,query`
+                    `${getAPIUrl()}json/${ip_address}?fields=status,region,city,zip,lat,lon,offset,isp,query`
                 )
                 const response_json: IPInfo = await result.json()
                 if (response_json.status !== 'success') {

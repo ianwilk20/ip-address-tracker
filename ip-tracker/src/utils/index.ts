@@ -26,4 +26,6 @@ const formatTimezone = (timezoneOffset: number): string => {
     return `UTC ${plusOrMinus}${formattedHour}:${min}`
 }
 
-export { validIPAddress, secondsToHours, formatTimezone }
+const getAPIUrl = (): string => import.meta.env.VITE_API_URL
+
+export { validIPAddress, secondsToHours, formatTimezone, getAPIUrl }

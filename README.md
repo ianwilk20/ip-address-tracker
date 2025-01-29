@@ -39,8 +39,8 @@ Desktop:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Add solution URL here](https://github.com/ianwilk20/ip-address-tracker)
+- Live Site URL: [Add live site URL here](https://ip-tracker-ianwilk20.netlify.app/)
 
 ## My process
 
@@ -106,11 +106,18 @@ export default {
 
 ### Continued development
 
-I'd like to continue to practice TypeScript. This was my first frontend mentor challenge that I used it and very minimally (since it wasn't a big challenge with lots of things to type).
+- I'd like to continue to practice TypeScript. This was my first frontend mentor challenge that I used it and very minimally (since it wasn't a big challenge with lots of things to type).
 
-After trying out some random but valid IP Addresses I realized that I'd need to handle some possible error cases. I did a simple strategy of showing an alert and resetting the input field but I could also see a benefit in using something like react-error-boundary. I haven't used this library before but I could see it's utility and would like to try it out.
+- After trying out some random but valid IP Addresses I realized that I'd need to handle some possible error cases. I did a simple strategy of showing an alert and resetting the input field but I could also see a benefit in using something like react-error-boundary. I haven't used this library before but I could see it's utility and would like to try it out.
 
 ### Useful resources
 
 - [Tailwind Responsive Design](https://tailwindcss.com/docs/responsive-design) - This helped me with creating a new Tailwind screen breakpoint.
 - [Reusing Logic with Custom Hooks](https://react.dev/learn/reusing-logic-with-custom-hooks) - This is an great guide on how to build custom hooks in React.
+
+### Developer notes
+
+- I am using Netlify to host the live site. The API I am using for the IP Address lookup is an "http" site. When the API url is hardcoded in the application and hosted on Netlify, the request will be blocked due to "Mixed Content"; because the Netlify app is secured over "https" and it's trying to make requests to an API that served over "http". It appears that it isn't Netlify that is blocking the request but rather something that the browser blocks for security reasons, since mixed content can make the connection vulnerable to attacks. The solution is to:
+
+ a) Create a .env file with an environment variable with the url of the netlify site followed by `/api/`. Also, modify the fetch call to use that environment variable.
+ b) In the build dist folder, add a file called `_redirects` (no file extension) with the content of `/api/* http://ip-api.com/:splat 200!`. What that does is forward requests made at `https://ip-tracker-ianwilk20.netlify.app/api/` to the API `http://ip-api.com/json/`. In essence, it acts as a proxy, allowing the frontend to make calls to the http-based API all the while serving the app over HTTPS.
